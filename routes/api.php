@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,5 @@ use App\Http\Controllers\AreaController;
 |
 */
 
-Route::get('/areas', [areaController::class, 'areas']);
+Route::get('/areas', [AreaController::class, 'areas']);
+Route::get('/stores', [StoreController::class, 'stores']);

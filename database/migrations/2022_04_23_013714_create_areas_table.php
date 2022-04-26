@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('areas', function (Blueprint $table) {
-            $table->id();
-            $table->char('prefectures', 5);
-            $table->char('city', 15);
-            $table->double('lat', 9, 6);
-            $table->double('lon', 9, 6);
-        });
+        // Schema::create('areas', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->char('prefectures', 5);
+        //     $table->char('city', 15);
+        //     $table->double('lat', 9, 6);
+        //     $table->double('lon', 9, 6);
+        // });
     }
 
     /**
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('areas');
+        // Schema::dropIfExists('areas');
     }
 };
