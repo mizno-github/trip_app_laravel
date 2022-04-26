@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('name', 25);
             $table->unsignedBigInteger('area_id'); // 外部キー制約をつける
             $table->string('other_address', 120)->nullable();
-            $table->unsignedSmallInteger('tel')->nullable();
-            $table->unsignedSmallInteger('fax')->nullable();
+            $table->string('tel')->nullable();
+            $table->string('fax')->nullable();
             $table->string('eigyo_time', 120);
             $table->string('access', 120);
             $table->text('detail_text');

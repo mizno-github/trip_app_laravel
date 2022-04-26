@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Store extends Model
 {
     use HasFactory;
+
+    public function getAll()
+    {
+        return $this->select([
+            'id',
+            'message',
+            'main_img',
+        ])->get();
+    }
 }
