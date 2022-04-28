@@ -24,7 +24,8 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'type' => 'filled|regex:/^random$/',
+            'areaId' => 'required_without:type|max:5',
+            'type' => 'regex:/^random$/',
             'scope' => 'filled|max:2',
         ];
     }

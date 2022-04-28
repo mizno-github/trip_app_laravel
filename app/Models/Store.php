@@ -9,12 +9,21 @@ class Store extends Model
 {
     use HasFactory;
 
-    public function getAll()
+    public function getByAreaId($areaId)
     {
-        return $this->select([
-            'id',
-            'message',
-            'main_img',
-        ])->get();
+        return $this->whereArea_id($areaId)->get();
+    }
+
+    public function getRand($hits)
+    {
+        return $this
+            ->inRandomOrder()
+            ->take($hits)
+            ->select([
+                'id',
+                'message',
+                'main_img',
+            ])
+            ->get();
     }
 }
