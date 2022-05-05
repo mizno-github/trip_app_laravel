@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('detail_title', 15);
             $table->string('name', 25);
             $table->unsignedBigInteger('area_id'); // 外部キー制約をつける
+            $table->unsignedBigInteger('user_id'); // 外部キー制約をつける
             $table->string('other_address', 120)->nullable();
             $table->string('tel')->nullable();
             $table->string('fax')->nullable();
