@@ -2,9 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminStoreController;
 use App\Http\Controllers\AreaController;
-use App\Http\Controllers\StoreController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,12 @@ Route::controller(AuthController::class)->prefix('user/')->group(function () {
         Route::delete('', 'destroy');
         Route::post('logout', 'logout');
         Route::get('', 'me');
+    });
+});
+
+Route::middleware('auth:sanctum')->prefix('admin/')->group(function () {
+    Route::controller(AdminStoreController::class)->prefix('store/')->group(function () {
+        Route::get('all', 'getAll');
     });
 });
 

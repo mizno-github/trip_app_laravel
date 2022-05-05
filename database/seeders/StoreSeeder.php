@@ -19,6 +19,7 @@ class StoreSeeder extends Seeder
             'detail_title' => '三神峯公園',
             'name' => '三神峯公園',
             'area_id' => 41041,
+            'user_id' => 1,
             'other_address' => '宮城県仙台市太白区三神峯３丁目５−１４−１２',
             'tel' => '0222451223',
             'fax' => '0222451224',
