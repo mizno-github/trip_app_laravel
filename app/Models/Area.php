@@ -13,4 +13,15 @@ class Area extends Model
     {
         return $this->get();
     }
+
+    public function getLatAndLon()
+    {
+        return $this
+            ->select([
+                'id',
+                'lat',
+                'lon',
+            ])
+            ->get();
+    }
 }
