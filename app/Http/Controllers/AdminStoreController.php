@@ -13,4 +13,10 @@ class AdminStoreController extends Controller
     {
         $this->store = $store;
     }
+
+    public function getAll(Request $request)
+    {
+        $userId = $request->user()->id;
+        return $this->store->getByUserId($userId);
+    }
 }

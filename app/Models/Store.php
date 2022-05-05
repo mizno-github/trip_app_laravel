@@ -14,6 +14,19 @@ class Store extends Model
         return $this->whereArea_id($areaId)->get();
     }
 
+    public function getByUserId($userId)
+    {
+        return $this
+                ->whereUser_id($userId)
+                ->select([
+                    'id',
+                    'name',
+                    'main_img',
+                    'detail_text',
+                ])
+                ->get();
+    }
+
     public function getRand($hits)
     {
         return $this
