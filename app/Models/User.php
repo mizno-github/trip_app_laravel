@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -41,4 +42,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function createUser($request)
+    {
+        return $this->create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+    }
+
+    public function getUserByEmailAndPassword($request)
+    {
+        $user = $this->where('email', $request->email)->first();
+
+        if ($user === null) {
+            return null;
+        }
+
+        return Hash::check($request->password, $user->password) ? $user : null;
+    }
+
+    public function deleteUser($user)
+    {
+        $user->delete();
+    }
+
+    public function logout($request)
+    {
+        $request->user()->currentAccessToken()->delete();
+    }
+
+    public function updateByUserModel($request)
+    {
+        return $request->user()->fill($request->all())->save();
+    }
 }
