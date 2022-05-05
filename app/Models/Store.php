@@ -9,6 +9,14 @@ class Store extends Model
 {
     use HasFactory;
 
+    public function getByStoreIdAndUserId($storeId, $userId)
+    {
+        return $this->where([
+            ['id', $storeId],
+            ['user_id', $userId]
+        ])->first();
+    }
+
     public function getByAreaId($areaId)
     {
         return $this->whereArea_id($areaId)->get();

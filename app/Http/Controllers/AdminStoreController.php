@@ -19,4 +19,16 @@ class AdminStoreController extends Controller
         $userId = $request->user()->id;
         return $this->store->getByUserId($userId);
     }
+
+    public function get(Request $request)
+    {
+        $userId = $request->user()->id;
+        $store = $this->store->getByStoreIdAndUserId($request->storeId, $userId);
+
+        if ($store) {
+            return $store;
+        } else {
+            return response('エラーが発生しました', 400);
+        }
+    }
 }
