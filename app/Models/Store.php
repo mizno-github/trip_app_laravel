@@ -33,6 +33,11 @@ class Store extends Model
         ])->first();
     }
 
+    public function create($request)
+    {
+        return $this->fill($request)->save();
+    }
+
     public function getByAreaId($areaId)
     {
         return $this->whereArea_id($areaId)->get();

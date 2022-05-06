@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Store;
 use App\Http\Requests\StoreUpdateRequest;
+use App\Http\Requests\StoreCreateRequest;
 
 class AdminStoreController extends Controller
 {
@@ -33,21 +34,35 @@ class AdminStoreController extends Controller
         }
     }
 
+    public function create(StoreCreateRequest $request)
+    {
+        $storeContent = $request->all();
+
+        $storeContent['user_id'] = $request->user()->id;
+        $storeContent['main_img'] = $this->saveImg($request->main_img);
+        $storeContent['sub_img'] = $this->saveImg($request->sub_img);
+
+        $result = $this->store->create($storeContent);
+
+        if ($result) {
+            return response('新規作成が完了しました', 200);
+        } else {
+            return response('エラーが発生しました', 400);
+        }
+    }
+
     public function update(StoreUpdateRequest $request)
     {
         $storeContent = $request->all();
         $userId = $request->user()->id;
 
         if (isset($request->main_img)) {
-            $imgName = $this->saveImg($request->main_img);
-            $storeContent['main_img'] = $imgName;
+            $storeContent['main_img'] = $this->saveImg($request->main_img);
         }
 
         if (isset($request->sub_img)) {
-            $imgName = $this->saveImg($request->sub_img);
-            $storeContent['sub_img'] = $imgName;
+            $storeContent['sub_img'] = $this->saveImg($request->sub_img);
         }
-
 
         $result = $this->store->updateByStoreId($request->storeId, $storeContent, $userId);
 

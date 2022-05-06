@@ -36,6 +36,7 @@ Route::controller(AuthController::class)->prefix('user/')->group(function () {
 Route::middleware('auth:sanctum')->prefix('admin/')->group(function () {
     Route::controller(AdminStoreController::class)->prefix('store/')->group(function () {
         Route::get('all', 'getAll');
+        Route::post('', 'create');
         Route::get('{storeId}', 'get')->where('storeId', '[0-9]+');
         Route::put('{storeId}', 'update')->where('storeId', '[0-9]+');
     });
