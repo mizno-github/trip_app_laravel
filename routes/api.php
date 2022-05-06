@@ -37,6 +37,7 @@ Route::middleware('auth:sanctum')->prefix('admin/')->group(function () {
     Route::controller(AdminStoreController::class)->prefix('store/')->group(function () {
         Route::get('all', 'getAll');
         Route::post('', 'create');
+        Route::delete('{storeId}', 'hardDelete');
         Route::get('{storeId}', 'get')->where('storeId', '[0-9]+');
         Route::put('{storeId}', 'update')->where('storeId', '[0-9]+');
     });

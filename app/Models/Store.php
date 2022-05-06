@@ -78,4 +78,15 @@ class Store extends Model
 
         return $target->update($storeContent);
     }
+
+    public function hardDelete($userId, $storeId)
+    {
+        return $this
+            ->where([
+                ['id', $storeId],
+                ['user_id', $userId],
+            ])
+            ->first()
+            ->delete();
+    }
 }

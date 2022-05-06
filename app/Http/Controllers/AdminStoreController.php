@@ -79,4 +79,16 @@ class AdminStoreController extends Controller
         $imgName = $uploadedFile->getClientOriginalName();
         return $imgName;
     }
+
+    public function hardDelete(Request $request)
+    {
+        $userId = $request->user()->id;
+        $result = $this->store->hardDelete($userId, $request->storeId);
+
+        if ($result) {
+            return response('削除が完了しました', 200);
+        } else {
+            return response('エラーが発生しました', 400);
+        }
+    }
 }
