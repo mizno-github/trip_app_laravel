@@ -9,6 +9,22 @@ class Store extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'detail_title',
+        'name',
+        'area_id',
+        'user_id',
+        'other_address',
+        'tel',
+        'fax',
+        'eigyo_time',
+        'access',
+        'message',
+        'detail_text',
+        'main_img',
+        'sub_img',
+    ];
+
     public function getByStoreIdAndUserId($storeId, $userId)
     {
         return $this->where([
@@ -46,5 +62,15 @@ class Store extends Model
                 'main_img',
             ])
             ->get();
+    }
+
+    public function updateByStoreId($storeId, $storeContent, $userId)
+    {
+        $target = $this->where([
+            ['id', $storeId],
+            ['user_id', $userId],
+        ])->first();
+
+        return $target->update($storeContent);
     }
 }
