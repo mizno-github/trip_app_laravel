@@ -25,6 +25,11 @@ class Store extends Model
         'sub_img',
     ];
 
+    public function getByStoreId($storeId)
+    {
+        return $this->find($storeId);
+    }
+
     public function getByStoreIdAndUserId($storeId, $userId)
     {
         return $this->where([

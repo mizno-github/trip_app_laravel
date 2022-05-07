@@ -19,6 +19,11 @@ class StoreController extends Controller
         $this->area = $area;
     }
 
+    public function getDetail(Request $request)
+    {
+        return $this->store->getByStoreId($request->storeId);
+    }
+
     public function stores(StoreRequest $request)
     {
         $areaId = $request->areaId;
