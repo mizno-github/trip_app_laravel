@@ -19,4 +19,9 @@ class AreaController extends Controller
         $areas = $this->area->getAll();
         return $areas;
     }
+
+    public function get(Request $request)
+    {
+        return $this->area->getByAreaId($request->areaId);
+    }
 }

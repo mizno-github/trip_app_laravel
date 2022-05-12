@@ -14,6 +14,11 @@ class Area extends Model
         return $this->get();
     }
 
+    public function getByAreaId($areaId)
+    {
+        return $this->findOrFail($areaId);
+    }
+
     public function getLatAndLon()
     {
         return $this
