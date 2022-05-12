@@ -20,6 +20,9 @@ use App\Http\Controllers\StoreController;
 
 Route::get('/areas', [AreaController::class, 'areas']);
 Route::get('/stores', [StoreController::class, 'stores']);
+Route::controller(AreaController::class)->prefix('area/')->group(function () {
+    Route::get('{areaId}', 'get')->where('areaId', '[0-9]+');
+});
 
 Route::controller(AuthController::class)->prefix('user/')->group(function () {
     Route::post('', 'register');
